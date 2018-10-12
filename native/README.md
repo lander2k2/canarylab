@@ -23,7 +23,9 @@ Start sending traffic:
     $ kubectl exec -it crashcart bash
     # while true; do curl canarylab-data-svc:8080/version; sleep 0.2; done;
 
-## Canary Deployment Simulation - Excessive Errors
+## Canary Deployment Simulations
+
+### Failure: Excessive Errors
 
 In this example, the v2 version will be started with a flag that cause it to return intermitent 500 errors.  This will be detected and the deployment rolled back.
 
@@ -39,7 +41,7 @@ In this example, the v2 version will be started with a flag that cause it to ret
 
         $ python canary_coalmine.py [prometheus address] 4
 
-## Canary Deployment Simulation - Poor Performance
+### Failure: Poor Performance
 
 In this example, the v2 version will be started with a flag that causes intermittent slow responses.  This will be detected and the deployment rolled back.
 
@@ -55,7 +57,7 @@ In this example, the v2 version will be started with a flag that causes intermit
 
         $ python canary_coalmine.py [prometheus address] 4
 
-## Canary Deployment Simulation - Successful
+## Success
 
 In this example, the v2 version will be started in default mode and will behave properly.  No problems will be detected and the canary deployment will successful roll out.
 
