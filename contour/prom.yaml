@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prometheus
+spec:
+  type: LoadBalancer
+  ports:
+  - name: web
+    port: 9090
+    protocol: TCP
+    targetPort: web
+  selector:
+    prometheus: prometheus
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Prometheus
+metadata:
+  name: prometheus
+spec:
+  serviceAccountName: prometheus
+  serviceMonitorSelector:
+    matchLabels:
+      team: canary
+  resources:
+    requests:
+      memory: 400Mi
+
